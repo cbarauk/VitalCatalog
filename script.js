@@ -86,7 +86,6 @@ function applyFilters(){
   renderList(out, true);
 }
 
-// event delegation for list (buy / view)
 list.addEventListener('click', (e)=>{
   const buy = e.target.closest('.btn.btn-primary[data-id]');
   if(buy){
@@ -108,8 +107,7 @@ function openModal(car){
   modalTitle.textContent = car.name;
   modalPrice.textContent = formatPrice(car.price);
   modalDesc.textContent = car.desc;
-  
-  // populate specs
+
   if(car.specs){
     document.getElementById('specSpeed').textContent = car.specs.topSpeed || '—';
     document.getElementById('specAccel').textContent = car.specs.acceleration || '—';
@@ -117,17 +115,14 @@ function openModal(car){
     document.getElementById('specBraking').textContent = car.specs.braking || '—';
     document.getElementById('specClass').textContent = car.specs.class || '—';
   }
-  
-  // set buy button target/data
+
   if(buyBtn){
     buyBtn.dataset.id = car.id;
     buyBtn.textContent = 'BUY NOW';
   }
   modal.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
-  // move focus to close button for keyboard users
   modalClose.focus();
-  // escape to close and simple focus trap
   document.addEventListener('keydown', _handleModalKeydown);
 }
 
@@ -141,7 +136,6 @@ function closeModal(){
 function _handleModalKeydown(e){
   if(e.key === 'Escape') closeModal();
   if(e.key === 'Tab'){
-    // very small focus trap: keep focus within modal close button and first focusable in modal
     const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     if(!focusable.length) return;
     const first = focusable[0];
@@ -169,6 +163,4 @@ searchInput.addEventListener('input', applyFilters);
 typeFilter.addEventListener('change', applyFilters);
 sortSelect.addEventListener('change', applyFilters);
 
-// initial render
 renderList(cars);
-
