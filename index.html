@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Car Catalog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#" class="brand">
+        <img src="images/assets/logo.png" alt="VitalRP Logo" class="brand-logo">
+        <span class="brand-text"><span class="brand-orange">VITALRP VITCOIN</span><br>CATALOG</span>
+      </a>
+      <div class="header-buttons">
+        <a href="#catalog" class="btn btn-header btn-green">Play VitalRP</a>
+        <a href="https://vitalrp.tebex.io/category/vitcoins" target="_blank" class="btn btn-header">Buy Vitcoin</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="catalog" class="catalog container">
+      <div class="catalog-controls">
+        <div class="search">
+          <input id="searchInput" type="search" placeholder="Search cars (model, tag)..." aria-label="Search cars">
+        </div>
+        <div class="filters">
+          <select id="typeFilter" aria-label="Filter by type">
+            <option value="all">All types</option>
+            <option value="sport">Sport</option>
+            <option value="suv">SUV</option>
+            <option value="classic">Classic</option>
+            <option value="bike">Bike</option>
+          </select>
+          <select id="sortSelect" aria-label="Sort">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="list" class="catalog-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <div id="carModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content detail-view" role="document">
+      <button class="modal-close" id="modalClose" aria-label="Close"></button>
+      <div class="detail-wrap">
+        <div class="detail-left">
+          <img id="modalImage" src="images/car.jpg" alt="Car image">
+        </div>
+        <aside class="detail-right" aria-labelledby="modalTitle">
+          <div class="detail-right-inner">
+            <div class="spec-header">
+              <h1 id="modalTitle">CAR NAME</h1>
+              <div class="modal-price" id="modalPrice">COIN PRICE</div>
+            </div>
+            <p id="modalDesc">Small paragraph about the car and more.</p>
+
+            <div class="spec-sheet">
+              <h3 class="spec-title">PERFORMANCE SPECS</h3>
+              <div class="spec-grid">
+                <div class="spec-item">
+                  <span class="spec-label">TOP SPEED</span>
+                  <span class="spec-value" id="specSpeed">—</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">0-60 MPH</span>
+                  <span class="spec-value" id="specAccel">—</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">HANDLING</span>
+                  <span class="spec-value" id="specHandling">—</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">BRAKING</span>
+                  <span class="spec-value" id="specBraking">—</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">CLASS</span>
+                  <span class="spec-value" id="specClass">—</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-actions">
+              <button class="btn btn-primary big" id="buyBtn">BUY NOW</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container"> 2025 Car Catalog</div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
