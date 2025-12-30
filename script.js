@@ -94,10 +94,36 @@ function applyFilters(){
   renderList(out, true);
 }
 
+// Store Modal
+const storeModal = document.getElementById('storeModal');
+const storeModalBackdrop = document.getElementById('storeModalBackdrop');
+const storeModalClose = document.getElementById('storeModalClose');
+const storeIframe = document.getElementById('storeIframe');
+const buyVitcoinHeader = document.getElementById('buyVitcoinHeader');
+
+function openStoreModal(){
+  storeIframe.src = 'https://vitalrp.tebex.io/';
+  storeModal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeStoreModal(){
+  storeModal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  storeIframe.src = '';
+}
+
+storeModalBackdrop.addEventListener('click', closeStoreModal);
+storeModalClose.addEventListener('click', closeStoreModal);
+
+if(buyVitcoinHeader){
+  buyVitcoinHeader.addEventListener('click', openStoreModal);
+}
+
 list.addEventListener('click', (e)=>{
   const buy = e.target.closest('.btn.btn-primary[data-id]');
   if(buy){
-    window.open('https://vitalrp.tebex.io/category/vitcoins', '_blank');
+    openStoreModal();
     return;
   }
   const view = e.target.closest('button[data-view]');
@@ -163,7 +189,8 @@ modalClose.addEventListener('click', closeModal);
 
 if(buyBtn){
   buyBtn.addEventListener('click', ()=>{
-    window.open('https://vitalrp.tebex.io/category/vitcoins', '_blank');
+    closeModal();
+    openStoreModal();
   });
 }
 
